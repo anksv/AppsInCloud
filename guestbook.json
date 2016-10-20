@@ -1,0 +1,49 @@
+{
+  "id": "/guestbook",
+  "cmd": null,
+  "cpus": 1,
+  "mem": 50,
+  "disk": 0,
+  "instances": 1,
+  "constraints": [
+    [
+      "hostname",
+      "CLUSTER",
+      "10.11.12.123"
+    ]
+  ],
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "vchauhan27/guestbook:1.0",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 9097,
+          "hostPort": 0,
+          "servicePort": 10104,
+          "protocol": "tcp",
+          "labels": {}
+        }
+      ],
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": false
+    }
+  },
+  "env": {
+    "REDIS_PORT_6380_TCP_PORT": "6380",
+    "REDIS_PORT_6380_TCP_ADDR": "10.11.12.125"
+  },
+  "labels": {
+    "HAPROXY_GROUP": "internal"
+  },
+  "portDefinitions": [
+    {
+      "port": 10104,
+      "protocol": "tcp",
+      "labels": {}
+    }
+  ]
+}
