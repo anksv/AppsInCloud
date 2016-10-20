@@ -1,0 +1,64 @@
+{
+  "id": "/mr-redis",
+  "cmd": null,
+  "cpus": 1,
+  "mem": 128,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "paashuawei/mr-redis:latest",
+      "network": "HOST",
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": true
+    }
+  },
+  "env": {
+    "FRAMEWORK_NAME": "mr-redis",
+    "CLUSTER_SIZE": "1",
+    "MESOS_MASTER": "zk://master.mesos:2181/mesos"
+  },
+  "healthChecks": [
+    {
+      "path": "/v1/STATUS",
+      "protocol": "HTTP",
+      "portIndex": 1,
+      "gracePeriodSeconds": 30,
+      "intervalSeconds": 30,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 0,
+      "ignoreHttp1xx": false,
+      "port": 5656
+    }
+  ],
+  "labels": {
+    "DCOS_PACKAGE_RELEASE": "0",
+    "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo-1.7",
+    "DCOS_PACKAGE_METADATA": "eyJuYW1lIjoibXItcmVkaXMiLCJwb3N0SW5zdGFsbE5vdGVzIjoiT25jZSB0aGUgY2x1c3RlciBpbml0aWFsaXplcyBkb3dubG9hZCBjbGkgZnJvbSBodHRwczovL2dpdGh1Yi5jb20vbWVzb3MvbXItcmVkaXMvcmVsZWFzZXMvZG93bmxvYWQvdjAuMDEtYWxwaGEvbXJyIGFuZCBmb2xsb3cgdGhlIGluc3RydWN0aW9ucyBpbiBnaXRodWIuY29tL21lc29zL21yLXJlZGlzIFJFQURNRSBvbiBob3cgdG8gaW5pdGlhbGl6ZSB0aGUgY2xpLCB5b3UgY291bGQgYWxzbyB1c2UgdGhlIFJFU1QgYXBpJ3MgZGlyZWN0bHkgdG8gY3JlYXRlIHJlZGlzIGluc3RhbmNlcyIsInNjbSI6Imh0dHBzOi8vZ2l0aHViLmNvbS9tZXNvcy9tci1yZWRpcyIsImRlc2NyaXB0aW9uIjoiUmVkaXMgaXMgdGhlIGZhc3Rlc3QgaW4tbWVtb3J5IEtWLUNhY2hlIGFuZCBEYXRhdHN0cnVjdHVyZSBzdG9yZSIsInBhY2thZ2luZ1ZlcnNpb24iOiIyLjAiLCJ0YWdzIjpbImlubWVtb3J5IiwicmVkaXMiXSwibWFpbnRhaW5lciI6ImRoaWxpcC5rdW1hci5zQGh1YXdlaS5jb20iLCJmcmFtZXdvcmsiOnRydWUsInZlcnNpb24iOiIwLjAuMSIsInByZUluc3RhbGxOb3RlcyI6IkluIG9yZGVyIGZvciByZWRpcyBmcmFtZXdvcmsgdG8gc3RhcnQgc3VjY2Vzc2Z1bGx5IGl0IHJlcXVpcmVzIGF0bGVhc3QgMSBDUFUgYW5kIDEyOE1CIG9mIFJBTSBpbmNsdWRpbmcgcG9ydHMuXG5Ob3RlIHRoYXQgdGhlIHNlcnZpY2UgaXMgYWxwaGEgYW5kIHRoZXJlIG1heSBiZSBidWdzLCBpbmNsdWRpbmcgcG9zc2libGUgZGF0YSBsb3NzLCBpbmNvbXBsZXRlIGZlYXR1cmVzLCBpbmNvcnJlY3QgZG9jdW1lbnRhdGlvbiBvciBvdGhlciBkaXNjcmVwYW5jaWVzLiIsImltYWdlcyI6eyJpY29uLXNtYWxsIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21lc29zL21yLXJlZGlzL21hc3Rlci9sb2dvLXNtYWxsLnBuZyIsImljb24tbWVkaXVtIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21lc29zL21yLXJlZGlzL21hc3Rlci9sb2dvLW1pZC5wbmciLCJpY29uLWxhcmdlIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21lc29zL21yLXJlZGlzL21hc3Rlci9sb2dvLWxhcmdlLnBuZyIsInNjcmVlbnNob3RzIjpudWxsfX0=",
+    "DCOS_PACKAGE_REGISTRY_VERSION": "2.0",
+    "DCOS_PACKAGE_FRAMEWORK_NAME": "mr-redis",
+    "DCOS_PACKAGE_VERSION": "0.0.1",
+    "DCOS_PACKAGE_NAME": "mr-redis",
+    "DCOS_PACKAGE_IS_FRAMEWORK": "true"
+  },
+  "portDefinitions": [
+    {
+      "port": 5454,
+      "protocol": "tcp",
+      "labels": {}
+    },
+    {
+      "port": 5656,
+      "protocol": "tcp",
+      "labels": {}
+    },
+    {
+      "port": 2379,
+      "protocol": "tcp",
+      "labels": {}
+    }
+  ]
+}
