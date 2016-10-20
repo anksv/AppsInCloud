@@ -1,0 +1,63 @@
+{
+	"Applications": {
+		"/guestbook": {
+			"Type": "Container",
+			"SubType": "Marathon",
+			"Application": {
+				"id": "/guestbook",
+				"constraints": [
+					["hostname", "CLUSTER", "10.11.12.150"]
+				],
+				"container": {
+					"type": "DOCKER",
+					"docker": {
+						"forcePullImage": false,
+						"image": "vchauhan27/guestbook:1.0",
+						"network": "BRIDGE",
+						"parameters": [],
+						"portMappings": [{
+							"containerPort": 9097,
+							"hostPort": 0,
+							"servicePort": 10104,
+							"protocol": "tcp"
+						}],
+						"privileged": false
+					},
+					"volumes": []
+				},
+				"cpus": 1,
+				"disk": 0,
+				"env": {
+					"REDIS_PORT_6380_TCP_ADDR": "10.11.12.150",
+					"REDIS_PORT_6380_TCP_PORT": "5656"
+				},
+				"instances": 1,
+				"mem": 50,
+				"ports": null,
+				"dependencies": null,
+				"labels": {
+					"HAPROXY_GROUP": "internal"
+				}
+			}
+		},
+		"TestInstance": {
+			"Type": "BareMetal",
+			"SubType": "MrRedis",
+			"Application": {
+				"AppId": "TestInstance",
+				"Capacity": 100,
+				"Master": 1,
+				"Slave": 3
+			}
+		}
+	},
+	"Dependencies": {
+		"/guestbook": {
+			"AppName": "TestInstance",
+			"Environment": {
+				"REDIS_PORT_6380_TCP_ADDR": "",
+				"REDIS_PORT_6380_TCP_PORT": ""
+			}
+		}
+	}
+}
