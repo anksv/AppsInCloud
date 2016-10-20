@@ -1,0 +1,7 @@
+appname = PaaS-ApiServer
+httpport = 8081
+runmode = dev
+marathonURL = "http://10.145.208.109:8080/"
+redisFrameWorkURL="http://10.145.208.117:5656"
+redisURL = "http://"
+autorender = false
